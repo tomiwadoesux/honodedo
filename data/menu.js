@@ -65,7 +65,7 @@ export const modernMultipageDark = [
   { id: 6, href: "/modern-contact-dark", text: "Contact" },
 ];
 
-export const qmodernOnepage = [
+export const modernOnepage = [
   { href: "#home", text: "Home", className: "active", dataBtnAnimate: "y" },
   { href: "#about", text: "About", dataBtnAnimate: "y" },
   { href: "#services", text: "Services", dataBtnAnimate: "y" },
