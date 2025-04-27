@@ -1,10 +1,14 @@
 "use client";
 import { toggleMobileMenu } from "@/utlis/toggleMobileMenu";
 import Nav from "./components/Nav";
-
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 export default function Header6({ links }) {
+  const pathname = usePathname();
+
+  const isHome = pathname === "/" || pathname === "/#contact";
+
   return (
     <div className="main-nav-sub container">
       {/* Logo  (* Add your text or image to the link tag. Use SVG or PNG image format. 
@@ -45,44 +49,43 @@ export default function Header6({ links }) {
           <li className="desktop-nav-display">
             <div className="vr mt-2" />
           </li>
-     
+
           <li>
-            {links[0].href.includes("/") ? (
-              <Link
-                href={links[links.length - 1].href}
-                className="opacity-1 no-hover"
-              >
-                <span
-                  className="btn btn-mod btn-w btn-border-c btn-border-white-light btn-small btn-round"
-                  data-btn-animate="y"
-                >
-                  <span className="btn-animate-y">
-                    <span className="btn-animate-y-1"> Contact Us</span>
-                    <span className="btn-animate-y-2" aria-hidden="true">
-                       Contact Us
+            <>
+              {isHome ? (
+                <a href="#contact" className="opacity-1 no-hover">
+                  <span
+                    className="btn btn-mod btn-w btn-border-c btn-border-white-light btn-small btn-round"
+                    data-btn-animate="y"
+                  >
+                    <span className="btn-animate-y">
+                      <span className="btn-animate-y-1">Contact Us</span>
+                      <span className="btn-animate-y-2" aria-hidden="true">
+                        Contact Us
+                      </span>
                     </span>
                   </span>
-                </span>
-              </Link>
-            ) : (
-              <a href="#contact" className="opacity-1 no-hover">
-                <span
-                  className="btn btn-mod btn-w btn-border-c btn-border-white-light btn-small btn-round"
-                  data-btn-animate="y"
-                >
-                  <span className="btn-animate-y">
-                    <span className="btn-animate-y-1"> Contact Us</span>
-                    <span className="btn-animate-y-2" aria-hidden="true">
-                       Contact Us
+                </a>
+              ) : (
+                <Link href="/#contact" className="opacity-1 no-hover">
+                  <span
+                    className="btn btn-mod btn-w btn-border-c btn-border-white-light btn-small btn-round"
+                    data-btn-animate="y"
+                  >
+                    <span className="btn-animate-y">
+                      <span className="btn-animate-y-1">Contact Us</span>
+                      <span className="btn-animate-y-2" aria-hidden="true">
+                        Contact Us
+                      </span>
                     </span>
                   </span>
-                </span>
-              </a>
-            )}
+                </Link>
+              )}
+            </>
           </li>
         </ul>
       </div>
-      
+
       {/* End Main Menu */}
     </div>
   );

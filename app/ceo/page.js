@@ -12,9 +12,9 @@ import Header6 from "@/components/headers/Header6";
 
 export const metadata = {
   title:
-    "Element Page Grid || Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+    "CEO | Honourable Odedo",
   description:
-    "Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+    "Honourable Odedo | CEO Page",
 };
 export default function Ceo() {
   return (
@@ -39,36 +39,7 @@ export default function Ceo() {
                   <div className="text-center">
                     <div className="row">
                       {/* Page Title */}
-                      <div className="col-md-8 offset-md-2">
-                        <h1 className="hs-title-1 mb-20">
-                          <span
-                            className="wow charsAnimIn"
-                            data-splitting="chars"
-                          >
-                            <AnimatedText text="Grid System" />
-                          </span>
-                        </h1>
-
-                        <div className="row">
-                          <div className="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-                            <p
-                              className="section-descr mb-0 wow fadeIn"
-                              data-wow-delay="0.2s"
-                              data-wow-duration="1.2s"
-                            >
-                              Learn more about{" "}
-                              <a
-                                href="https://getbootstrap.com/docs/5.0/layout/grid/"
-                                rel="noopener nofollow"
-                                target="_blank"
-                              >
-                                Bootstrap grid system
-                              </a>
-                              .
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                      
                       {/* End Page Title */}
                     </div>
                   </div>

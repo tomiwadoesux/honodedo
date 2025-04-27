@@ -65,12 +65,13 @@ export default function Hero2() {
                 data-wow-delay="0.6s"
               >
                 <a
-                  href="#contact"
+                  href="#services"
                   className="btn btn-mod btn-color btn-large btn-round btn-hover-anim mx-1 mb-xs-10"
                 >
                   <span>Our Services</span>
                 </a>
                 <a
+                  href="#contact"
                   onClick={() => setOpen(true)}
                   className="btn btn-mod btn-w-c btn-large btn-round mx-1 mb-xs-10 lightbox mfp-iframe"
                   data-btn-animate="y"

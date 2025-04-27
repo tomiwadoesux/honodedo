@@ -21,10 +21,8 @@ import Portfolio from "./Portfolio";
 import { menuItems } from "@/data/menu";
 
 export const metadata = {
-  title:
-    "Main About 3 || Resonance &mdash; One & Multi Page React Nextjs Creative Template",
-  description:
-    "Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+  title: "About | Honourable Odedo",
+  description: "Honourable Odedo | About Us Page",
 };
 export default function MainAboutPage3() {
   return (
@@ -41,8 +39,7 @@ export default function MainAboutPage3() {
               <ParallaxContainer
                 className="page-section bg-dark-1 bg-dark-alpha-80 light-content parallax-5"
                 style={{
-                  backgroundImage:
-                    "url(/assets/images/team2.jpg)",
+                  backgroundImage: "url(/assets/images/team2.jpg)",
                 }}
               >
                 <div className="container position-relative pt-50">
@@ -62,7 +59,7 @@ export default function MainAboutPage3() {
                             className="wow charsAnimIn"
                             data-splitting="chars"
                           >
-                        We love a little back Story
+                            We love a little back Story
                           </span>
                         </h1>
                       </div>
@@ -110,14 +107,20 @@ export default function MainAboutPage3() {
                     <div className="from-left">
                       <h2 className="section-title mt-30">About The CEO</h2>
                       <p className="mb-50">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aliquam id tellus rutrum, consectetur tellus et, posuere
-                        mauris. Sed sit amet lacinia nunc vestibulum non varius
-                        nunc.
+                        Honorable Odedo is a real estate expert, entrepreneur,
+                        and former House of Representatives member. A graduate
+                        of Estate Management from UNN and Marketing from
+                        Portland State University, USA, he has successfully
+                        built businesses both in Nigeria and abroad. After
+                        serving two terms in the National Assembly, He is now
+                        dedicated to creating opportunities for Nigerians at
+                        home and abroad to secure valuable land and real estate
+                        in Abuja, combining decades of experience with a passion
+                        for empowerment.
                       </p>
                       <div className="local-scroll">
                         <Link
-                          href={`/main-pages-contact-1${dark ? "-dark" : ""}`}
+                          href={`/ceo${dark ? "-dark" : ""}`}
                           className="btn btn-mod btn-large btn-round btn-hover-anim"
                         >
                           <span>See More</span>
@@ -151,26 +154,7 @@ export default function MainAboutPage3() {
               className={`page-section  ${
                 dark ? "bg-dark-1 light-content z-index-1" : ""
               }`}
-            >
-              <div className="container position-relative">
-                <div className="row text-center wow fadeInUp">
-                  <div className="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-                    <p className="section-descr mb-50 mb-sm-30">
-                      We Listen to what you want, Give you the best advice on it
-                      and help you get it.
-                    </p>
-                    <div className="local-scroll">
-                      <Link
-                        href={`/main-pages-contact-1${dark ? "-dark" : ""}`}
-                        className="btn btn-mod btn-large btn-round btn-hover-anim"
-                      >
-                        <span>Contact us</span>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+            ></section>
           </main>
           <Footer1 />
         </div>{" "}

@@ -89,7 +89,7 @@ export default function Home1({ onePage = false, dark = false }) {
                 </a>
               ) : (
                 <Link
-                  href={`/main-pages-about-1${dark ? "-dark" : ""}`}
+                  href={`/about${dark ? "-dark" : ""}`}
                   className="link-hover-anim underline align-middle"
                   data-link-animate="y"
                 >
@@ -190,7 +190,7 @@ export default function Home1({ onePage = false, dark = false }) {
 
       <div className="pt-4 container position-relative">
         <div className="row mb-60 mb-xs-30">
-          <div className="col-md-6">
+          <div className="col-md-6" id="services" >
             <h2 className="section-caption mb-xs-10">Our Services</h2>
             <h3 className="section-title mb-0">
               <AnimatedText text="What we offer our clients" />
@@ -211,7 +211,6 @@ export default function Home1({ onePage = false, dark = false }) {
           className={`page-section  scrollSpysection  ${
             dark ? "bg-dark-1 light-content" : ""
           }`}
-          id="services"
         >
           <Service2 />
           <div className="row pt-4 mb-60 mb-xs-30">
@@ -302,7 +301,7 @@ export default function Home1({ onePage = false, dark = false }) {
 
                 <div className="local-scroll">
                   <Link
-                    href={`/main-pages-contact-1${dark ? "-dark" : ""}`}
+                    href={`/portfolio${dark ? "-dark" : ""}`}
                     className="btn btn-mod btn-large btn-round btn-hover-anim"
                   >
                     <span>See Project</span>

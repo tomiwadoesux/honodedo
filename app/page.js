@@ -6,6 +6,9 @@ import Home1 from "@/components/homes/home-1";
 import { menuItems } from "@/data/menu";
 import { fancyMultipage } from "@/data/menu";
 import Hero1 from "@/components/homes/home-1/heros/Hero1";
+import Link from "next/link";
+
+
 // import Hero2 from "@/components/homes/home-1/heros/Hero2";
 import Hero2 from "./Hero2";
 import ParallaxContainer from "@/components/common/ParallaxContainer";
@@ -17,9 +20,12 @@ export const metadata = {
   title:
     "Honourable Odedo & Co",
   description: 
-    "Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+    "Honourable Odedo & Co",
+
+    
 };
 export default function Home1TypedTextMultiPage() {
+    
   return (
     <>
       <div className="theme-main">

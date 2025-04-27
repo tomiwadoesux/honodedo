@@ -8,9 +8,9 @@ import Hero1 from "@/components/homes/home-1/heros/Hero1";
 import Header1Multipage from "@/components/headers/Header1Multipage";
 import { menuItems } from "@/data/menu";
 export const metadata = {
-  title: "Portfolio",
+  title: "Portfolio | Honourable Odedo",
   description:
-    "Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+    "Honourable Odedo | Portfolio Page",
 };
 export default function Home1MainDemoMultiPage() {
   return (

@@ -10,16 +10,16 @@ import Image from "next/image";
 import Header6 from "@/components/headers/Header6";
 import { fancyMultipage } from "@/data/menu";
 import React from "react";
-
+import Contact from "@/components/homes/home-1/Contact";
 import Gallery1 from "@/components/gallery/Gallery1";
 import { menuItems } from "@/data/menu";
 export const metadata = {
   title:
-    "Main About 1 || Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+    "Listings | Honourable Odedo",
   description:
-    "Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+    "Honourable Odedo | Listings Page",
 };
-export default function MainAboutPage1() {
+export default function MainAboutPage1({ onePage = false, dark = false }) {
   return (
     <>
       <div className="theme-main">
@@ -83,32 +83,16 @@ export default function MainAboutPage1() {
 
               {/* End Divider */}
               {/* Call Action Section */}
-              <section className="page-section">
-                <div className="container position-relative">
-                  {/* Decorative Waves */}
-                  <div className="position-relative"></div>
-                  {/* End Decorative Waves */}
-                  <div className="row wow fadeInUp">
-                    <div className="col-md-6 offset-md-1 col-lg-5 offset-lg-2 text-md-start mb-sm-30">
-                      <p className="section-descr mb-0">
-                        See what you Like? Contact Us and we will get back to
-                        you
-                      </p>
-                    </div>
-                    <div className="col-md-4 col-lg-3 text-md-end">
-                      <div className="local-scroll">
-                        <Link
-                          href={`/main-pages-contact-1`}
-                          className="btn btn-mod btn-large btn-round btn-hover-anim"
-                        >
-                          <span>Contact us</span>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
+             
             </>
+             <section
+                    className={`page-section  scrollSpysection  ${
+                      dark ? "bg-dark-1 light-content" : ""
+                    }`}
+                    id="contact"
+                  >
+                    <Contact />{" "}
+                  </section>
           </main>
           <Footer1 />
         </div>{" "}
