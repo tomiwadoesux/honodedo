@@ -5,11 +5,32 @@ import ModalVideo from "@/components/common/ModalVideo";
 import TypeWriter from "@/components/common/TypeWriter";
 import Brands2 from "@/components/homes/home-1/Brands2";
 import Brands from "@/components/homes/home-1/Brands";
+import { Autoplay, EffectFade } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 
-export default function Hero2() {
+const divSections = [
+  {
+    className: "home-section bg-scroll bg-light-alpha-60",
+    bgImage: "/assets/images/full-width-images/section-bg-7.jpg",
+    darkclassName: "home-section bg-scroll bg-dark-alpha-70",
+  },
+  {
+    className: "home-section bg-scroll",
+    darkclassName: "home-section bg-scroll bg-dark-alpha-70",
+    bgImage: "/assets/images/full-width-images/section-bg-8.jpg",
+  },
+  {
+    className: "home-section bg-scroll bg-light-alpha-50",
+    bgImage: "/assets/images/full-width-images/section-bg-9.jpg",
+    darkclassName: "home-section bg-scroll bg-dark-alpha-70",
+  },
+];
+
+export default function Hero2({dark}) {
   return (
     <>
+    
       <div className="container min-height-100vh overflow-hidden d-flex align-items-center pt-100 pb-100">
         {/* Home Section Content */}
         <div className="home-content">
@@ -26,7 +47,7 @@ export default function Hero2() {
                 />
                 <div>
                   <h2 className="section-caption-fancy  fadeInUp">
-                    Honourable Odedo & Co
+                    Honourable <span className="text-nowrap"> Odedo & Co</span>
                   </h2>
                 </div>
                 <Image
@@ -83,8 +104,7 @@ export default function Hero2() {
             {/* End Home Section Text */}
           </div>
         </div>
-        {/* End Home Section Content */}
-        {/* Scroll Down */}
+   
         <div
           className="local-scroll scroll-down-wrap-4  fadeInUp"
           data-wow-offset={0}

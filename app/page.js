@@ -6,11 +6,8 @@ import Home1 from "@/components/homes/home-1";
 import { menuItems } from "@/data/menu";
 import { fancyMultipage } from "@/data/menu";
 import Hero1 from "@/components/homes/home-1/heros/Hero1";
-import Link from "next/link";
-
-
 // import Hero2 from "@/components/homes/home-1/heros/Hero2";
-import Hero2 from "./Hero2";
+import Hero5 from "./Hero5";
 import ParallaxContainer from "@/components/common/ParallaxContainer";
 
 
@@ -25,7 +22,6 @@ export const metadata = {
     
 };
 export default function Home1TypedTextMultiPage() {
-    
   return (
     <>
       <div className="theme-main">
@@ -61,7 +57,7 @@ export default function Home1TypedTextMultiPage() {
               id="home"
               
             >
-              <Hero2 />
+              <Hero5 />
             </ParallaxContainer>
             <Home1 />
           </main>

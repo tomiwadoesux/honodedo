@@ -5,7 +5,7 @@ import Header1Multipage from "@/components/headers/Header1Multipage";
 import Home1 from "@/components/homes/home-1";
 
 import Hero1 from "@/components/homes/home-1/heros/Hero1";
-import Hero5 from "@/components/homes/home-1/heros/Hero5";
+import Hero5 from "@/app/Hero5";
 import { menuItemsDark } from "@/data/menu";
 export const metadata = {
   title:
