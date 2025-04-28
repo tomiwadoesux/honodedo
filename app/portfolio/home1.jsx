@@ -21,7 +21,6 @@ import ParallaxContainer from "@/components/common/ParallaxContainer";
 export default function Home1({ onePage = false, dark = false }) {
   return (
     <>
-    
       <hr className={`mt-0 mb-0 ${dark ? "white" : ""}`} />
       <section className="page-section" id="Project">
         <div className="container position-relative">
@@ -37,7 +36,7 @@ export default function Home1({ onePage = false, dark = false }) {
                     <b>Location:</b>
                   </div>
                   <div className="col-sm-8">
-                 Hutu Abuja, Airport Road, Before Centenary City, Abuja.
+                    Hutu Abuja, Airport Road, Before Centenary City, Abuja.
                   </div>
                 </div>
                 <hr className="mb-20" />
@@ -46,10 +45,11 @@ export default function Home1({ onePage = false, dark = false }) {
                     <b>Description:</b>
                   </div>
                   <div>
-                    Lorem ipsum dolor sit amet conseur adipisci inerene.
-                    Maecenas volutpat, diam eni sagittis quam porta quam. Sed id
-                    dolor consectetur fermentum volutpat accumsan purus iaculis
-                    libero.
+                    Hutu Abuja is a breathtaking development that redefines
+                    luxury living, leisure, and tourism in Africa. Spanning 500
+                    hectares along the prestigious Airport Road, Abuja, this $3
+                    billion venture promises an extraordinary lifestyle
+                    unmatched anywhere on the continent.
                   </div>
                 </div>
                 <hr className="mb-20" />
@@ -104,7 +104,7 @@ export default function Home1({ onePage = false, dark = false }) {
                   />
                 </div>
                 {/* End Photo Item */}
-                
+
                 {/* End Photo Item */}
               </div>
             </div>
@@ -125,7 +125,8 @@ export default function Home1({ onePage = false, dark = false }) {
                     <b>Location:</b>
                   </div>
                   <div className="col-sm-8">
-                  20 Benue Crescent, Behind Area 1 shopping complex Garki, Abuja
+                    20 Benue Crescent, Behind Area 1 shopping complex Garki,
+                    Abuja
                   </div>
                 </div>
                 <hr className="mb-20" />
@@ -134,10 +135,12 @@ export default function Home1({ onePage = false, dark = false }) {
                     <b>Description:</b>
                   </div>
                   <div>
-                    Lorem ipsum dolor sit amet conseur adipisci inerene.
-                    Maecenas volutpat, diam eni sagittis quam porta quam. Sed id
-                    dolor consectetur fermentum volutpat accumsan purus iaculis
-                    libero.
+                    Owned by the CEO, Cheers Hotels offers a welcoming
+                    environment with top-notch customer service, ensuring guests
+                    feel at home throughout their stay. The hotel features
+                    professional catering services, a clean and well-maintained
+                    atmosphere, and reliable 24/7 electricity, making it a
+                    comfortable and convenient choice for all travelers.
                   </div>
                 </div>
                 <hr className="mb-20" />
@@ -176,7 +179,7 @@ export default function Home1({ onePage = false, dark = false }) {
                   />
                 </div>
                 {/* End Photo Item */}
-                
+
                 {/* End Photo Item */}
               </div>
             </div>
@@ -206,10 +209,12 @@ export default function Home1({ onePage = false, dark = false }) {
                     <b>Description:</b>
                   </div>
                   <div>
-                    Lorem ipsum dolor sit amet conseur adipisci inerene.
-                    Maecenas volutpat, diam eni sagittis quam porta quam. Sed id
-                    dolor consectetur fermentum volutpat accumsan purus iaculis
-                    libero.
+                    Owned by the CEO, Cheers Hotels offers a welcoming environment with top-notch
+                    customer service, ensuring guests feel at home throughout
+                    their stay. The hotel features professional catering
+                    services, a clean and well-maintained atmosphere, and
+                    reliable 24/7 electricity, making it a comfortable and
+                    convenient choice for all travelers.
                   </div>
                 </div>
                 <hr className="mb-20" />
@@ -249,7 +254,7 @@ export default function Home1({ onePage = false, dark = false }) {
                 </div>
                 {/* End Photo Item */}
                 {/* Photo Item */}
-            
+
                 {/* End Photo Item */}
               </div>
             </div>
@@ -270,11 +275,11 @@ export default function Home1({ onePage = false, dark = false }) {
                     <b>Location:</b>
                   </div>
                   <div className="col-sm-8">
-                    16, Mekong Crescent, Maitama, Abuja
+                    SunCity Estate, Abuja
                   </div>
                 </div>
                 <hr className="mb-20" />
-                <div className="small">
+                {/* <div className="small">
                   <div>
                     <b>Description:</b>
                   </div>
@@ -285,7 +290,7 @@ export default function Home1({ onePage = false, dark = false }) {
                     libero.
                   </div>
                 </div>
-                <hr className="mb-20" />
+                <hr className="mb-20" /> */}
               </div>
             </div>
             {/* End Project Details */}
@@ -312,10 +317,10 @@ export default function Home1({ onePage = false, dark = false }) {
                 </div>
                 {/* End Photo Item */}
                 {/* Photo Item */}
-             
+
                 {/* End Photo Item */}
                 {/* Photo Item */}
-            
+
                 {/* End Photo Item */}
               </div>
             </div>
@@ -341,7 +346,7 @@ export default function Home1({ onePage = false, dark = false }) {
                   </div>
                 </div>
                 <hr className="mb-20" />
-                <div className="small">
+                {/* <div className="small">
                   <div>
                     <b>Description:</b>
                   </div>
@@ -351,8 +356,8 @@ export default function Home1({ onePage = false, dark = false }) {
                     dolor consectetur fermentum volutpat accumsan purus iaculis
                     libero.
                   </div>
-                </div>
-                <hr className="mb-20" />
+                </div> */}
+                {/* <hr className="mb-20" /> */}
               </div>
             </div>
             {/* End Project Details */}

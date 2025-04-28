@@ -118,9 +118,9 @@ export default function Home1({ onePage = false, dark = false }) {
         </div>
       </section>
       <section
-        className="page-section bg-dark-1 light-content"
+        className="page-section bg-dark-1 bg-dark-alpha-50 light-content"
         style={{
-          backgroundImage: "url(/assets/images/team.jpg)",
+          backgroundImage: "url(/assets/images/team3.jpg)",
         }}
       >
         <Newsletter />
@@ -239,47 +239,14 @@ export default function Home1({ onePage = false, dark = false }) {
       >
         <Benefits />{" "}
       </section>
-      {/* 
-      <section
-        className={`page-section  scrollSpysection  ${
-          dark ? "bg-dark-1 light-content" : ""
-        } `}
-        id="portfolio"
-      >
-        <div className="container position-relative">
-          <div className="row mb-100 mb-md-80 mb-sm-40">
-            <div className="col-md-8 col-lg-9 mb-sm-30">
-              <p className="section-descr-large mb-0 wow fadeInUp">
-                Our partners
-              </p>
-            </div>
-            <div className="col-md-4 col-lg-3 text-end pt-20 pt-md-10 pt-sm-0 local-scroll">
-
-            </div>
-          </div>
-
-          <Portfolio />
-
-
-        </div>
-      </section> */}
-
+   
       {/* <section
         className={`page-section pt-0 pb-0  ${dark ? "light-content" : ""}`}
       >
         {" "}
         {dark ? <Testimonials2 /> : <Testimonials />}
       </section> */}
-
-      <section
-        className={`page-section pt-0 pb-0  ${dark ? "light-content" : ""}`}
-      >
-        {" "}
-        {dark ? <Testimonials2 /> : <Testimonials />}
-      </section>
-      {/* <section className={`page-section  ${dark ? " light-content" : ""}`}>
-        {dark ? <Brands2 /> : <Brands />}
-      </section> */}
+  
       <hr className={`mt-0 mb-0 ${dark ? "white" : ""}`} />
       <section
         className="page-section bg-gray-light-1 bg-light-alpha-70 bg-scroll pb-0 mb-100 mb-md-70 mb-sm-50 z-index-1"

@@ -569,8 +569,8 @@ export const portfolios12 = [
   {
     id: 71,
     className: "work-item mix development",
-    href: "/assets/images/summary.jpg",
-    imgSrc: "/assets/images/summary.jpg",
+    href: "/assets/images/5b-min.jpg",
+    imgSrc: "/assets/images/5b-min.jpg",
     imgAlt: "Work Description",
     delay: "1s",
   },

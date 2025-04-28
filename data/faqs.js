@@ -34,9 +34,15 @@ export const faqDataMain = [
   },
   {
     id: 2,
-    question: "Building Design, Construction, and Project Management",
+    question: "Building Design and Construction",
     answer:
-      "Our team provides professional building design, construction services, and complete project management. We help you bring your vision to life with expert guidance from start to finish.",
+      "Our team provides professional building design and construction services. We help you bring your vision to life with expert guidance from start to finish.",
+  },
+  {
+    id: 2,
+    question: "Project Management / Turnkey",
+    answer:
+      "We manage every aspect of your property development, from planning to final delivery, ensuring a seamless and stress-free experience.",
   },
   {
     id: 3,

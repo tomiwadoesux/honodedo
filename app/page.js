@@ -49,7 +49,7 @@ export default function Home1TypedTextMultiPage() {
               <Hero2 />
             </section> */}
             <ParallaxContainer
-              className="home-section bg-dark-1 bg-dark-alpha-80 light-content parallax-5 scrollSpysection"
+              className="home-section bg-dark-1 bg-dark-alpha-80 light-content parallax-5  scrollSpysection"
               style={{
                 backgroundImage:
                   "url(/assets/images/0-min.jpg)",
