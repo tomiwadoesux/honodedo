@@ -41,15 +41,16 @@ export default function Footer1({ dark = false }) {
               />
             </Link>
             <p>
-            Lorem ipsum dolor sit amet. Sit repellendus consequatur qui sint earum vel rerum
-             quam quo quia iusto in dolor adipisci. Sit debitis quod qui 
+            16, Mekong Crescent, Maitama, Abuja <br/> 20 Benue Cres, Garki, Abuja.
+
+
             </p>
             <div className="clearlinks">
-              <strong>T.</strong>
+              <strong>Tel:</strong>
               <a href="tel:+18376528800">+234 811 111 4542</a>
             </div>
             <div className="clearlinks">
-              <strong>E.</strong>
+              <strong>Mail:</strong>
               <a href="mailto:ibthemes21@gmail.com">honourableodedo@gmail.com</a>
             </div>
           </div>
