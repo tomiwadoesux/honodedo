@@ -86,10 +86,10 @@ export default function Contact() {
                 </div>
                 <h4 className="alt-features-title">Locations</h4>
                 <div className="alt-features-descr">
-               16 Mekong Crescent, Maitama, Abuja.
+                  16 Mekong Crescent, Maitama, Abuja.
                 </div>
                 <div className="alt-features-descr">
-               20 Benue Cres, Garki, Abuja.
+                  20 Benue Cres, Garki, Abuja.
                 </div>
               </div>
             </div>
@@ -101,7 +101,9 @@ export default function Contact() {
         <div className="col-md-6 mb-sm-50">
           {/* Contact Form */}
           <form
-            onSubmit={(e) => e.preventDefault()}
+            target="_blank"
+            action="https://formsubmit.co/honourableodedo@gmail.com"
+            method="POST"
             className="form contact-form pe-lg-5"
             id="contact_form"
           >
@@ -156,6 +158,7 @@ export default function Contact() {
                 {/* Send Button */}
                 <div className="pt-20">
                   <button
+                    type="submit"
                     className="submit_btn btn btn-mod btn-large btn-round btn-hover-anim"
                     id="submit_btn"
                     aria-controls="result"
@@ -182,7 +185,7 @@ export default function Contact() {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.3432603473675!2d7.464226675077553!3d9.032418291029066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0b644199d2ed%3A0x11421f9fa37a9ce7!2s20%20Benue%20Cres%2C%20Garki%2C%20Abuja%20900103%2C%20Federal%20Capital%20Territory!5e0!3m2!1sen!2sng!4v1745001052799!5m2!1sen!2sng"
               width="600"
               height="450"
-              style={{border:0}}
+              style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
