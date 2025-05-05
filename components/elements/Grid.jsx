@@ -21,7 +21,7 @@ export default function Grid() {
             in August that same year, just two months later. I became an
             Associate of the Nigerian Institution of Estate Surveyors and
             Valuers (NIESV) in 1986. I left FCDA as a Senior Estate Surveyor in
-            1989 and traveled to the USA for a two-year post-bachelor’s program
+            1989 and traveled to the USA for a two-year post-baccalaureate program
             in Marketing at Portland State University, Oregon, from 1989 to
             1991. While in the United States, I started and ran two businesses—a
             carpet cleaning company followed by a pest control company—between
