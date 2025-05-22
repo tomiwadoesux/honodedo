@@ -144,12 +144,10 @@ export default function Hero5({ dark }) {
           </div>
           {/* End Scroll Down */}
           {/* Status */}
-          <div className="hs-status wow fadeInUp" data-wow-offset={0}>
-            Based in London, United Kingdom
-          </div>
+        
           {/* End Status */}
         </div>
       </div>
     </>
-  );
+  );``
 }
