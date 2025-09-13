@@ -7,8 +7,8 @@ import "tippy.js/dist/tippy.css";
 import ClientWrapper from "./ClientWrapper";
 
 export const metadata = {
-  title: "Your App Title",
-  description: "Your app description",
+  title: "Hon Odedo ",
+  description: "Honourable Odedo",
 };
 
 export default function RootLayout({ children }) {

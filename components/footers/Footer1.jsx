@@ -51,7 +51,7 @@ export default function Footer1({ dark = false }) {
             </div>
             <div className="clearlinks">
               <strong>Mail:</strong>
-              <a href="mailto:ibthemes21@gmail.com">honourableodedo@gmail.com</a>
+              <a href="mailto:honourableodedo@gmail.com">honourableodedo@gmail.com</a>
             </div>
           </div>
           <div className="col-md-7 offset-md-1 offset-lg-2">

@@ -386,7 +386,7 @@ export default function Home1({ onePage = false, dark = false }) {
                 {/* Photo Item */}
                 <div className="mb-30 wow fadeInUp">
                   <Image
-                    src="/assets/images/3-min.png"
+                    src="/assets/images/3-min.webp"
                     alt="Image Description"
                     width={1200}
                     height={819}
