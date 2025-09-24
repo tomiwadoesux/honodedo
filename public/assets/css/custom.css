@@ -98,3 +98,106 @@ a {
 html {
   scroll-behavior: smooth !important;
 }
+
+/* Initial Loading Screen - Critical CSS for immediate display */
+.initial-loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+  opacity: 1;
+  visibility: visible;
+}
+
+.initial-loading-screen--fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.initial-loading-content {
+  text-align: center;
+  color: white;
+}
+
+.initial-loading-spinner {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.initial-spinner-dot {
+  width: 12px;
+  height: 12px;
+  background: #4f46e5;
+  border-radius: 50%;
+  animation: initial-loading-bounce 1.4s ease-in-out infinite both;
+}
+
+.initial-spinner-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.initial-spinner-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.initial-loading-text {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #e5e7eb;
+  letter-spacing: 0.5px;
+  animation: initial-text-pulse 2s ease-in-out infinite;
+}
+
+@keyframes initial-loading-bounce {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes initial-text-pulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Main Content Control */
+.main-content-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.main-content-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .initial-loading-text {
+    font-size: 16px;
+  }
+
+  .initial-spinner-dot {
+    width: 10px;
+    height: 10px;
+  }
+}

@@ -1,6 +1,11 @@
 export function init_wow() {
+  // Only run on client-side
+  if (typeof window === "undefined") return;
+
   const { WOW } = require("wowjs");
-  setTimeout(() => {
+
+  // Use requestAnimationFrame instead of setTimeout for better performance
+  requestAnimationFrame(() => {
     /* Wow init */
     if (document.body.classList.contains("appear-animate")) {
       document
@@ -11,7 +16,6 @@ export function init_wow() {
       boxClass: "wow",
       animateClass: "animatedfgfg",
       offset: 100,
-
       live: false,
       callback: function (box) {
         box.classList.add("animated");
@@ -36,7 +40,6 @@ export function init_wow() {
       boxClass: "wow-p",
       animateClass: "animatedfgfg",
       offset: 100,
-
       live: false,
       callback: function (box) {
         box.classList.add("animated");
@@ -59,7 +62,7 @@ export function init_wow() {
     ) {
       document.querySelectorAll(".wow-menubar").forEach((el) => {
         el.classList.add("no-animate", "fadeInDown", "animated");
-        setInterval(() => {
+        setTimeout(() => {
           el.classList.remove("no-animate");
         }, 1500);
       });
@@ -68,5 +71,5 @@ export function init_wow() {
         .querySelectorAll(".wow-menubar")
         .forEach((el) => (el.style.opacity = "1"));
     }
-  }, 400);
+  });
 }
