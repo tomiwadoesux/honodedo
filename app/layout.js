@@ -3,8 +3,13 @@ import "swiper/css";
 import "jarallax/dist/jarallax.min.css";
 import "swiper/css/effect-fade";
 import "photoswipe/dist/photoswipe.css";
-import "tippy.js/dist/tippy.css";
+import "./globals.css";
 import ClientWrapper from "./ClientWrapper";
+import LenisProvider from "./LenisProvider";
+import Loader from "./Loader";
+import PageTransition from "./PageTransition";
+import HeaderModern from "@/components/headers/HeaderModern";
+import { fancyMultipage } from "@/data/menu";
 
 export const metadata = {
   title: "Hon Odedo",
@@ -16,48 +21,36 @@ export default function RootLayout({ children }) {
     <html lang="en" className="no-mobile no-touch">
       <head>
         <link rel="stylesheet" href="/assets/css/styles.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Display: Fraunces (variable, optical-size axis) for editorial moments */}
         <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap"
           rel="stylesheet"
         />
+        {/* Body: Plus Jakarta Sans (kept from before — clean, refined) */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400;1,500&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500&family=Poppins&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..700;1,300..600&display=swap"
           rel="stylesheet"
         />
       </head>
       <body className="appear-animate body">
-        {/* Static Loading Screen - Appears immediately */}
-        <div id="initial-loading-screen" className="initial-loading-screen">
-          <div className="initial-loading-content">
-            <div className="initial-loading-spinner">
-              <div className="initial-spinner-dot"></div>
-              <div className="initial-spinner-dot"></div>
-              <div className="initial-spinner-dot"></div>
-            </div>
-            <div className="initial-loading-text">Loading...</div>
-          </div>
-        </div>
+        {/* Logo loader — appears immediately, dismissed by inline script below */}
+        <Loader />
 
-        {/* Main Content - Hidden initially */}
-        <div id="main-content" className="main-content-hidden">
-          <ClientWrapper>{children}</ClientWrapper>
-        </div>
+        {/* Main Content - Hidden initially.
+            LenisProvider wraps the whole content so smooth scroll applies
+            site-wide without hijacking pages that opt out via
+            data-lenis-prevent on a scrollable element. */}
+        <LenisProvider>
+          <div id="main-content" className="main-content-hidden">
+            {/* Persistent header — sits above page transitions so its state survives navigation */}
+            <HeaderModern links={fancyMultipage} />
+            <ClientWrapper>
+              <PageTransition>{children}</PageTransition>
+            </ClientWrapper>
+          </div>
+        </LenisProvider>
 
         {/* Inline JavaScript for immediate loading control */}
         <script dangerouslySetInnerHTML={{
@@ -70,7 +63,8 @@ export default function RootLayout({ children }) {
                 minDelay: false
               };
 
-              var minLoadingTime = 800; // Minimum loading time in ms
+              // Hold long enough for the logo wipe + breathe to complete (~1100ms wipe + buffer)
+              var minLoadingTime = 1500;
 
               function checkAllReady() {
                 var allReady = Object.values(loadingTasks).every(function(task) { return task; });

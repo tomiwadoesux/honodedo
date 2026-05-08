@@ -1,0 +1,404 @@
+/* ============================================================================
+   /books page — title-page hero + catalogue grid.
+   Each book card in the grid is a 3D-perspective container; the front
+   cover hinges on its left edge to reveal a printed title page on hover
+   (desktop) or tap (mobile, via the .bookOpen state set by BookCard).
+   ============================================================================ */
+
+/* ---------- Hero (quiet) ----------
+   Eyebrow + a single editorial sentence. No oversized italic title, no
+   byline strip, no shelf of covers — the catalogue grid below carries
+   all the weight. */
+.hero {
+  padding: 144px 0 56px;
+  position: relative;
+  background: var(--c-bg-warm);
+}
+
+.heroInner {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-accent);
+  font-weight: 500;
+}
+
+.heroEyebrow::before,
+.heroEyebrow::after {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+}
+
+/* 3D model panel — same proportions and bg as the about hero so the
+   two heroes read as a paired family. Transparent landscape stage. */
+.heroModel {
+  position: relative;
+  width: clamp(340px, 60vw, 620px);
+  aspect-ratio: 5 / 2;
+  background: transparent;
+  border: 0;
+  cursor: grab;
+  margin: 0;
+}
+
+.heroModel:active {
+  cursor: grabbing;
+}
+
+.heroLede {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 300;
+  line-height: 1.35;
+  color: var(--c-ink);
+  max-width: 32ch;
+  margin: 0 auto;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* ---------- Catalogue section ---------- */
+.section {
+  padding: 64px 0 120px;
+  background: var(--c-bg-warm);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 80px 56px;
+  align-items: start;
+}
+
+/* ---------- Book card (one per book) ---------- */
+.book {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.bookButton {
+  /* The button is the perspective context — covers + page sit inside. */
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1500px;
+  -webkit-perspective: 1500px;
+  border-radius: 0;
+}
+
+.bookButton:focus-visible {
+  outline: 0;
+}
+
+.bookButton:focus-visible .cover {
+  box-shadow:
+    0 0 0 2px var(--c-accent),
+    0 18px 38px -22px rgba(20, 20, 30, 0.4);
+}
+
+/* Cover container — keeps the 2:3 book ratio and holds both the printed
+   title page and the hinged front cover. */
+.cover {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  width: 100%;
+  border-radius: 3px;
+  background: var(--c-bg-sand);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.04),
+    0 18px 38px -22px rgba(20, 20, 30, 0.4);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition:
+    box-shadow 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* The printed title page sitting BEHIND the cover. Background is the
+   book's major colour (passed in via the inline `--book-color` custom
+   property on .cover); a black overlay layers on top so the text always
+   reads against a calm dark surface regardless of how saturated the
+   underlying colour is. */
+.coverPage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 22px;
+  gap: 10px;
+  background: var(--book-color, #1a1a1d);
+  border-radius: 3px;
+  /* Behind the front cover by a hair so backface-visibility doesn't
+     fight us when the cover lifts. */
+  transform: translateZ(-1px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Black overlay sitting between the colour bg and the text, dimming the
+   underlying colour to a deep, legible tone. */
+.coverPage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* All text + decoration sits ABOVE the overlay. */
+.coverPage > * {
+  position: relative;
+  z-index: 1;
+}
+
+.coverPageEyebrow {
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 500;
+}
+
+.coverPageAuthor {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.coverPageRule {
+  width: 32px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.55);
+  margin: 6px 0;
+}
+
+.coverPageTitle {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  color: #fff;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.coverPageSubtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+  max-width: 24ch;
+}
+
+.coverPageSummary {
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 12px 0 0;
+  max-width: 28ch;
+}
+
+/* The actual cover scan — sits ON TOP of the title page and hinges open
+   from its left edge. Spine + page-edge gradients give it depth. */
+.coverFront {
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--c-bg-sand);
+  transform-origin: left center;
+  -webkit-transform-origin: left center;
+  transition:
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow:
+    0 0 0 1px rgba(20, 20, 30, 0.04);
+  /* Slightly above the page in Z so it always paints on top */
+  transform: translateZ(0.5px);
+}
+
+.coverFront::before {
+  /* Spine highlight on the hinge edge */
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 6px;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.06) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.coverFront::after {
+  /* Subtle page edge highlight on the open edge */
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  right: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.coverImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ---------- Open states ---------- */
+/* Desktop: open on hover. */
+@media (hover: hover) {
+  .book:hover .coverFront {
+    transform: translateZ(0.5px) rotateY(-28deg);
+    box-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.04),
+      -10px 14px 36px -10px rgba(20, 20, 30, 0.3);
+  }
+  .book:hover .cover {
+    box-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.04),
+      0 32px 52px -20px rgba(20, 20, 30, 0.42);
+  }
+}
+
+/* Touch + click toggle: the BookCard component sets .bookOpen on tap,
+   which keeps the cover open on mobile until tapped again. */
+.bookOpen .coverFront {
+  transform: translateZ(0.5px) rotateY(-28deg);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.04),
+    -10px 14px 36px -10px rgba(20, 20, 30, 0.3);
+}
+
+.bookOpen .cover {
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.04),
+    0 32px 52px -20px rgba(20, 20, 30, 0.42);
+}
+
+/* ---------- Title + subtitle below the cover ---------- */
+.bookMeta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bookTitle {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+
+.bookSubtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--c-ink-soft);
+  margin: 0;
+  max-width: 32ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .hero {
+    padding: 120px 0 40px;
+  }
+  .section {
+    padding: 56px 0 96px;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 64px 40px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding: 100px 0 32px;
+  }
+  .heroEyebrow::before,
+  .heroEyebrow::after {
+    width: 18px;
+  }
+  .heroModel {
+    width: clamp(260px, 78vw, 460px);
+  }
+  .section {
+    padding: 48px 0 88px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .coverPage {
+    padding: 24px 18px;
+  }
+  .coverPageSummary {
+    display: none; /* keep the printed page minimal on small screens */
+  }
+}
+
+/* Reduce motion users — skip the swing entirely. */
+@media (prefers-reduced-motion: reduce) {
+  .coverFront,
+  .cover {
+    transition: none !important;
+  }
+  .book:hover .coverFront,
+  .bookOpen .coverFront {
+    transform: translateZ(0.5px) rotateY(-15deg);
+  }
+}

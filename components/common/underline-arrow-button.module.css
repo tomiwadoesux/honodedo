@@ -1,0 +1,47 @@
+.wrap,
+.wrap:hover,
+.wrap:focus,
+.wrap:active,
+.wrap:visited {
+  display: inline-flex;
+  text-decoration: none !important;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 0 6px;
+  border-bottom: 1px solid currentColor;
+  font-family: var(--font-sans, sans-serif);
+  /* Match the filled-arrow button's md size (0.8rem) so the two button
+     styles read at the same visual weight throughout the site. The
+     uppercase + 0.18em tracking is what differentiates this variant. */
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: inherit;
+  transition: gap 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wrap:hover .btn,
+.wrap:focus .btn {
+  gap: 16px;
+}
+
+.arrow {
+  display: inline-block;
+  font-size: 0.95em;
+  transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wrap:hover .arrow {
+  transform: translateX(2px);
+}

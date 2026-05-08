@@ -1,0 +1,143 @@
+/* ============================================================================
+   /about hero — vertical, centered:
+     eyebrow → 3D bust → title → lede.
+   ============================================================================ */
+
+.hero {
+  background: var(--c-bg-warm);
+  /* Tighter than before so the hero doesn't eat the whole viewport — the
+     team grid below should be at least partially visible at desktop sizes. */
+  padding: 96px 0 64px;
+  border-bottom: 1px solid var(--c-line-soft);
+}
+
+.heroStack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* ---------- Eyebrow (top) ---------- */
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-accent);
+  font-weight: 500;
+  position: relative;
+  padding: 0 38px;
+}
+
+.heroEyebrow::before,
+.heroEyebrow::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+}
+
+.heroEyebrow::before {
+  left: 0;
+}
+
+.heroEyebrow::after {
+  right: 0;
+}
+
+/* ---------- 3D model panel (middle) ----------
+   Landscape stage matching the natural footprint of an architectural model.
+   Transparent — no panel chrome — so the model reads as part of the page.
+   The Canvas inside auto-fits the GLB and OrbitControls limits vertical
+   movement to a subtle ±14° band so the rotation feels architectural
+   rather than acrobatic. */
+.heroModel {
+  position: relative;
+  /* Smaller than before — the panel was previously crowding the page. */
+  width: clamp(340px, 60vw, 620px);
+  aspect-ratio: 5 / 2;
+  background: transparent;
+  border: 0;
+  cursor: grab;
+  margin: 0;
+}
+
+.heroModel:active {
+  cursor: grabbing;
+}
+
+/* ---------- Title ---------- */
+.heroTitle {
+  font-family: var(--font-sans);
+  font-size: clamp(2.2rem, 4.4vw, 4rem);
+  font-weight: 600;
+  letter-spacing: var(--tr-tight);
+  line-height: 1.05;
+  margin: 0;
+  color: var(--c-ink);
+  /* Wider container so the two lines of the title (separated by a <br>)
+     have enough room to breathe horizontally at desktop sizes. */
+  max-width: 32ch;
+  /* Blur-in reveal: animation runs on mount, finishes in place. The eyebrow
+     above is intentionally NOT animated (it reads as a static label).  */
+  animation: heroBlurIn 0.9s cubic-bezier(0.32, 0.72, 0.24, 1) 0.2s both;
+}
+
+/* ---------- Lede ---------- */
+.heroLede {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--c-body);
+  /* Narrower so the lede reads as a tight paragraph under the title rather
+     than running edge-to-edge across the centered stack. */
+  max-width: 52ch;
+  margin: 0 auto;
+  /* Same reveal as the title, staggered so it lands a beat after. */
+  animation: heroBlurIn 0.9s cubic-bezier(0.32, 0.72, 0.24, 1) 0.55s both;
+}
+
+/* ---------- Blur-in reveal (text only) ----------
+   Each animated element starts off-position with a soft blur and rises
+   into place. Used by the title and lede only — the eyebrow and 3D
+   model are static so the page name and the visual centerpiece don't
+   flicker on each navigation. */
+@keyframes heroBlurIn {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroTitle,
+  .heroLede {
+    animation: none;
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 880px) {
+  .hero {
+    padding: 80px 0 56px;
+  }
+  .heroStack {
+    gap: 20px;
+  }
+  .heroModel {
+    width: clamp(260px, 78vw, 460px);
+    aspect-ratio: 5 / 2;
+  }
+}

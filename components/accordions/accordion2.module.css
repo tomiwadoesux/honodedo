@@ -1,0 +1,232 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-top: 1px solid var(--c-line, #e6e6ea);
+}
+
+.item {
+  border-bottom: 1px solid var(--c-line, #e6e6ea);
+  position: relative;
+  transition: background 0.3s var(--ease-soft, cubic-bezier(0.2, 0.8, 0.2, 1));
+}
+
+.item[data-open] {
+  background: var(--c-bg-warm, #fafaf7);
+}
+
+.head {
+  appearance: none;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 22px 8px 22px 4px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: padding 0.32s var(--ease-soft, cubic-bezier(0.2, 0.8, 0.2, 1));
+}
+
+.item[data-open] .head {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.head:focus-visible {
+  outline: 2px solid var(--c-accent, #3e4095);
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+.index {
+  font-family: var(--font-display, "Times New Roman", serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--c-muted, #888);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s var(--ease-soft);
+  flex-shrink: 0;
+}
+
+.item[data-open] .index {
+  color: var(--c-accent, #3e4095);
+}
+
+.question {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--c-ink, #111);
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.item[data-open] .question {
+  color: var(--c-ink, #111);
+}
+
+/* Toggle: a "+" that morphs into a "−" by rotating the vertical bar */
+.toggle {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.toggleBar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 1.5px;
+  background: var(--c-ink, #111);
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.36s cubic-bezier(0.32, 0.72, 0.24, 1),
+    background 0.3s ease;
+}
+
+.toggleBarV {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.item[data-open] .toggleBar {
+  background: var(--c-accent, #3e4095);
+}
+
+.item[data-open] .toggleBarV {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+/* Body container — animated height by Motion */
+.body {
+  overflow: hidden;
+}
+
+.answer {
+  margin: 0;
+  padding: 0 16px 26px 60px;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--c-body, #555);
+  max-width: 70ch;
+}
+
+/* ============================================================================
+   "Show more / Show less" toggle
+   ============================================================================ */
+.toggleAll {
+  width: 100%;
+  margin-top: 0;
+  padding: 24px 8px 0;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--c-line, #e6e6ea);
+  cursor: pointer;
+  font: inherit;
+  color: var(--c-ink, #111);
+  text-align: left;
+  transition: gap 0.32s var(--ease-soft, cubic-bezier(0.2, 0.8, 0.2, 1));
+}
+
+.toggleAll:hover {
+  gap: 22px;
+  color: var(--c-accent, #3e4095);
+}
+
+.toggleAll:focus-visible {
+  outline: 2px solid var(--c-accent, #3e4095);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.toggleAllLabel {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.toggleAllCount {
+  font-family: var(--font-display, "Times New Roman", serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--c-muted, #888);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.toggleAllArrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-bg-warm, #fafaf7);
+  border: 1px solid var(--c-line, #e6e6ea);
+  font-size: 0.9rem;
+  transition:
+    transform 0.36s var(--ease-soft),
+    background 0.32s var(--ease-soft),
+    border-color 0.32s var(--ease-soft);
+}
+
+.toggleAllArrow[data-flip] {
+  transform: rotate(180deg);
+}
+
+.toggleAll:hover .toggleAllArrow {
+  background: var(--c-accent, #3e4095);
+  border-color: var(--c-accent, #3e4095);
+  color: #fff;
+}
+
+.toggleAll:hover .toggleAllArrow[data-flip] {
+  transform: rotate(180deg) translateY(0);
+}
+
+@media (max-width: 640px) {
+  .head {
+    gap: 16px;
+    padding: 18px 6px;
+  }
+  .item[data-open] .head {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .answer {
+    padding: 0 10px 22px 44px;
+    font-size: 0.92rem;
+  }
+  .index {
+    font-size: 0.88rem;
+  }
+  .question {
+    font-size: 0.95rem;
+  }
+  .toggleAll {
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+  }
+  .toggleAllCount {
+    display: none;
+  }
+}

@@ -1,0 +1,423 @@
+/* ============================================================================
+   /ceo — Long-form editorial profile.
+   Magazine-style. Quiet. Generous whitespace. No stat blocks. No timeline rails.
+   ============================================================================ */
+
+/* ---------- Hero ---------- */
+.hero {
+  background: var(--c-bg-warm);
+  padding: 140px 0 80px;
+  border-bottom: 1px solid var(--c-line-soft);
+  position: relative;
+}
+
+.heroInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 80px;
+  align-items: end;
+}
+
+.heroEyebrow {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-accent);
+  font-weight: 500;
+  margin-bottom: 28px;
+  display: block;
+}
+
+.heroName {
+  font-family: var(--font-sans);
+  font-size: var(--fs-display-xl);
+  font-weight: 600;
+  letter-spacing: var(--tr-tight);
+  line-height: 0.95;
+  margin: 0 0 32px;
+  color: var(--c-ink);
+}
+
+.heroSerif {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.heroLede {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  color: var(--c-ink-soft);
+  max-width: 32ch;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.heroPortraitWrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  background: #efefef;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.heroPortrait {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+/* Tiny meta strip under the hero */
+.heroMeta {
+  display: flex;
+  gap: 56px;
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--c-line);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  font-weight: 500;
+}
+
+.heroMeta strong {
+  color: var(--c-ink);
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+/* ---------- Article container ---------- */
+.article {
+  padding: 96px 0 32px;
+  /* Same warm bg as the navbar / hero so the article reads as one
+     continuous surface with the rest of the page. */
+  background: var(--c-bg-warm);
+}
+
+.articleInner {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Prologue — formal third-person profile sitting before the
+   autobiographical chapters. Sets the eyebrow + body text apart from the
+   rest of the article (which is first-person) with a thin bottom rule. */
+.prologue {
+  padding-bottom: 56px;
+  margin-bottom: 56px;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.prologueEyebrow {
+  display: inline-block;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-accent);
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+/* Chapter header */
+.chapter {
+  margin-top: 80px;
+}
+
+.chapter:first-of-type {
+  margin-top: 0;
+}
+
+.chapterMeta {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.chapterNumber {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--c-accent);
+  flex-shrink: 0;
+}
+
+.chapterRule {
+  flex: 1;
+  height: 1px;
+  background: var(--c-line);
+  align-self: center;
+}
+
+.chapterTitle {
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin: 0 0 32px;
+  color: var(--c-ink);
+  max-width: 24ch;
+}
+
+.chapterTitle em {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Body paragraphs — long-form */
+.prose p {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--c-ink-soft);
+  margin: 0 0 1.6em;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* Drop cap for the very first paragraph of the article */
+.prose .firstParagraph::first-letter {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 4.4em;
+  float: left;
+  line-height: 0.9;
+  margin: 0.05em 0.12em -0.05em 0;
+  color: var(--c-ink);
+}
+
+/* ---------- Pull quote between chapters ---------- */
+.pullQuote {
+  margin: 80px 0;
+  padding: 24px 0;
+  border-top: 1px solid var(--c-line);
+  border-bottom: 1px solid var(--c-line);
+  text-align: left;
+}
+
+.pullQuoteText {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  line-height: 1.35;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--c-ink);
+  margin: 0 0 12px;
+  text-wrap: balance;
+}
+
+.pullQuoteCite {
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  font-weight: 500;
+}
+
+/* ---------- The Summary section ---------- */
+.summary {
+  background: var(--c-bg-sand);
+  border-top: 1px solid var(--c-line-soft);
+  padding: 96px 0;
+  margin-top: 96px;
+}
+
+.summaryInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.summaryHead {
+  text-align: center;
+  margin-bottom: 64px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.summaryEyebrow {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-accent);
+  font-weight: 500;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.summaryTitle {
+  font-family: var(--font-sans);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  letter-spacing: var(--tr-snug);
+  line-height: 1.15;
+  margin: 0 0 20px;
+  color: var(--c-ink);
+}
+
+.summaryTitle em {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.summaryLede {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--c-body);
+  margin: 0 auto;
+  max-width: 50ch;
+}
+
+/* Profile-at-a-glance poster — featured visual at the top of the summary */
+.summaryPoster {
+  margin: 0 auto;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* The clickable wrapper — visually transparent, semantically a button so
+   keyboard users can open the modal too. The hover lift signals it's
+   interactive. */
+.summaryPosterButton {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  border-radius: 6px;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.summaryPosterButton:hover,
+.summaryPosterButton:focus-visible {
+  transform: translateY(-3px);
+  outline: 0;
+}
+
+.summaryPosterButton:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 6px;
+}
+
+.summaryPosterImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow:
+    0 1px 0 rgba(20, 20, 30, 0.04),
+    0 28px 60px -28px rgba(20, 20, 30, 0.32);
+  transition: box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.summaryPosterButton:hover .summaryPosterImg,
+.summaryPosterButton:focus-visible .summaryPosterImg {
+  box-shadow:
+    0 1px 0 rgba(20, 20, 30, 0.04),
+    0 36px 72px -28px rgba(20, 20, 30, 0.4);
+}
+
+/* Subtle pill in the corner that says "Click to enlarge" — only fully
+   visible on hover/focus. */
+.summaryPosterZoomHint {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  font-weight: 500;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 6px 10px;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.summaryPosterButton:hover .summaryPosterZoomHint,
+.summaryPosterButton:focus-visible .summaryPosterZoomHint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.summaryPosterCaption {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ---------- Contact band (replaces the old "connect" CTA) ---------- */
+.contactSection {
+  background: var(--c-bg-warm);
+  padding: 96px 0 120px;
+  border-top: 1px solid var(--c-line-soft);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .heroInner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .heroMeta {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding: 90px 0 60px;
+  }
+  .article {
+    padding: 64px 0 16px;
+  }
+  .summary {
+    padding: 64px 0;
+  }
+  .contactSection {
+    padding: 64px 0 88px;
+  }
+  .chapter {
+    margin-top: 56px;
+  }
+  .pullQuote {
+    margin: 56px 0;
+  }
+}

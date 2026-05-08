@@ -1,0 +1,152 @@
+/* ============================================================================
+   AppButton — one component, four variants, single size scale.
+   The wrapper is always a transparent reset; visual styling goes on .btn,
+   .filled, .line, .link, .text.
+   ============================================================================ */
+
+.wrap,
+.wrap:hover,
+.wrap:focus,
+.wrap:active,
+.wrap:visited {
+  display: inline-flex;
+  text-decoration: none !important;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.wrap:focus-visible {
+  outline: 2px solid var(--c-accent, #3e4095);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* ---------- Shared base ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans, sans-serif);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    gap 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ---------- Size scale (shared across all variants) ---------- */
+.sizeSm {
+  padding: 7px 12px;
+  font-size: 0.78rem;
+  gap: 6px;
+}
+.sizeMd {
+  padding: 8px 14px;
+  font-size: 0.8rem;
+}
+.sizeLg {
+  padding: 13px 22px;
+  font-size: 0.92rem;
+  gap: 10px;
+}
+
+/* ---------- Variant: filled ---------- */
+.filled {
+  --btn-bg: var(--c-accent, #3e4095);
+  --btn-fg: #ffffff;
+  --btn-bg-hover: #2a2c70;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 1px solid var(--btn-bg, var(--btn-bd, var(--c-accent)));
+  border-radius: 8px;
+}
+.sizeLg.filled {
+  border-radius: 10px;
+}
+.wrap:hover .filled {
+  background: var(--btn-bg-hover);
+  border-color: var(--btn-bg-hover);
+  color: var(--btn-fg);
+}
+
+/* ---------- Variant: line (uppercase + underline) ---------- */
+.line {
+  background: transparent;
+  color: var(--btn-fg, currentColor);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+  /* Drop the horizontal padding from the size class so the underline hugs
+     the text — but keep the vertical reasonable. */
+  padding-left: 0;
+  padding-right: 0;
+}
+.sizeSm.line {
+  padding-top: 3px;
+  padding-bottom: 5px;
+}
+.sizeMd.line {
+  padding-top: 4px;
+  padding-bottom: 6px;
+}
+.sizeLg.line {
+  padding-top: 6px;
+  padding-bottom: 8px;
+}
+.wrap:hover .line {
+  gap: 16px;
+}
+
+/* ---------- Variant: link (plain underlined text) ---------- */
+.link {
+  background: transparent;
+  color: var(--btn-fg, currentColor);
+  border: 0;
+  border-radius: 4px;
+  padding-left: 0;
+  padding-right: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: currentColor;
+  transition:
+    color 0.25s ease,
+    text-decoration-color 0.25s ease,
+    gap 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.wrap:hover .link {
+  text-decoration-color: var(--c-accent, #3e4095);
+}
+
+/* ---------- Variant: text (bare) ---------- */
+.text {
+  background: transparent;
+  color: var(--btn-fg, currentColor);
+  border: 0;
+  border-radius: 4px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.wrap:hover .text {
+  color: var(--c-accent, #3e4095);
+}
+
+/* ---------- Trailing arrow ---------- */
+.arrow {
+  display: inline-block;
+  font-size: 0.95em;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wrap:hover .arrow {
+  transform: translateX(3px);
+}

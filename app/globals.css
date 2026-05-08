@@ -1,0 +1,247 @@
+/* ============================================================================
+   Hon Odedo — Design System
+   Editorial. Quiet. Considered.
+   ============================================================================ */
+
+:root {
+  /* Type stack */
+  --font-display: "Fraunces", "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Existing brand palette — no new colors */
+  --c-ink: #111111;
+  --c-ink-soft: #1a1a1a;
+  --c-body: #555555;
+  --c-muted: #888888;
+  --c-line: #e6e6ea;
+  --c-line-soft: #ececec;
+  --c-bg: #ffffff;
+  --c-bg-warm: #fafaf7;
+  --c-bg-sand: #f4f1ea;
+  --c-accent: #3e4095;
+  --c-accent-soft: #d8d9e5;
+  /* Original brand red — used by the legacy `btn-mod` styling and now
+     surfaced as a token so the landing-page CTAs (Liberation Housing,
+     Contact form Send Message) can opt back into it. */
+  --c-red: #ed3237;
+
+  /* Surface helpers */
+  --surface-card: #ffffff;
+  --surface-overlay: rgba(10, 10, 12, 0.55);
+
+  /* Type scale (calmly modular) */
+  --fs-display-xl: clamp(3rem, 7vw, 6rem);
+  --fs-display: clamp(2.4rem, 5.4vw, 4.6rem);
+  --fs-h1: clamp(2rem, 4vw, 3rem);
+  --fs-h2: clamp(1.7rem, 3vw, 2.4rem);
+  --fs-h3: clamp(1.25rem, 1.6vw, 1.45rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-eyebrow: 0.72rem;
+
+  /* Tracking */
+  --tr-eyebrow: 0.22em;
+  --tr-tight: -0.02em;
+  --tr-snug: -0.01em;
+
+  /* Motion */
+  --ease-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --t-fast: 0.18s;
+  --t-base: 0.32s;
+  --t-slow: 0.55s;
+
+  /* Radii */
+  --r-card: 4px;
+  --r-pill: 999px;
+}
+
+/* ----------------------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  /* Match the navbar bg so any uncovered region of the page reads as one
+     continuous surface (e.g. when sections are shorter than the viewport,
+     or while route transitions are in flight). */
+  background: var(--c-bg-warm);
+}
+
+body,
+.body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--c-body);
+  /* Same warm bg as the navbar — the site reads as one continuous surface,
+     and section-specific bg colors layer on top of this. */
+  background: var(--c-bg-warm);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headlines: serif display by default for h1/h2 marketing moments,
+   but only when explicitly opted in via a class so we don't break vendor CSS. */
+.t-display,
+.t-display * {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: var(--tr-tight);
+  line-height: 1;
+}
+
+.t-serif-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: var(--tr-snug);
+}
+
+.t-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-accent);
+  font-weight: 500;
+}
+
+/* Legacy `.u-btn` and `.u-btn-hero-*` rules removed — every button on the
+   site now flows through <AppButton>. See components/common/AppButton.jsx. */
+
+/* ----------------------------------------------------------------------------
+   Header — gentle refinements over the existing markup.
+   We override only the typography + spacing of links, keeping the existing
+   menu mechanism intact.
+   ---------------------------------------------------------------------------- */
+.main-nav .desktop-nav ul.mn-has-multilevel-sub > li > a,
+.main-nav .desktop-nav > ul > li > a {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 10px 18px;
+  transition: color var(--t-fast) ease;
+}
+
+.main-nav .nav-logo-wrap .logo img {
+  height: 40px;
+  width: auto;
+}
+
+@media (max-width: 767px) {
+  .main-nav .nav-logo-wrap .logo img {
+    height: 34px;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   Page transition — every page enters with a soft, considered reveal.
+   Subtle: opacity + 6px lift + tiny blur. Lasts ~420ms. No exit.
+   ---------------------------------------------------------------------------- */
+@keyframes page-reveal {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+    filter: blur(6px);
+  }
+  60% {
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+.page-transition {
+  animation: page-reveal 0.42s var(--ease-soft) both;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none;
+  }
+  .u-btn,
+  .u-btn .arrow {
+    transition: none;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   Editorial section header pattern (used across pages for consistency)
+   ---------------------------------------------------------------------------- */
+.u-section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 64px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.u-section-head .eyebrow {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-accent);
+  font-weight: 500;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.u-section-head h2 {
+  font-family: var(--font-sans);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  letter-spacing: var(--tr-snug);
+  line-height: 1.15;
+  margin: 0;
+  color: var(--c-ink);
+  max-width: 26ch;
+}
+
+.u-section-head .meta {
+  font-size: var(--fs-small);
+  color: var(--c-muted);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .u-section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   Home page — Benefits ("Why choose Us?") section
+   Adds extra vertical room above and below the section on desktop so the
+   core values read as a deliberate, breathing block instead of crowding
+   the surrounding sections.
+   ---------------------------------------------------------------------------- */
+.benefitsSectionExtraSpacing {
+  padding-top: 144px;
+  padding-bottom: 144px;
+}
+
+@media (max-width: 992px) {
+  .benefitsSectionExtraSpacing {
+    padding-top: 88px;
+    padding-bottom: 88px;
+  }
+}
+
+@media (max-width: 560px) {
+  .benefitsSectionExtraSpacing {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}

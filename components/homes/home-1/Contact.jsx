@@ -1,5 +1,6 @@
 "use client";
 import AnimatedText from "@/components/common/AnimatedText";
+import FilledArrowButton from "@/components/common/FilledArrowButton";
 import React from "react";
 
 export default function Contact() {
@@ -157,14 +158,15 @@ export default function Contact() {
               <div className="col-lg-5">
                 {/* Send Button */}
                 <div className="pt-20">
-                  <button
+                  {/* Legacy red for the Send button — restores the
+                      original colour the contact form had. */}
+                  <FilledArrowButton
                     type="submit"
-                    className="submit_btn btn btn-mod btn-large btn-round btn-hover-anim"
-                    id="submit_btn"
-                    aria-controls="result"
+                    size="lg"
+                    color="var(--c-red)"
                   >
-                    <span>Send Message</span>
-                  </button>
+                    Send Message
+                  </FilledArrowButton>
                 </div>
               </div>
               <div className="col-lg-7">{/* Inform Tip */}</div>

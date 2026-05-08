@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Empty profile placeholder">
+  <!-- Warm sand background sized to the team card's 4:5 aspect, so the
+       SVG fills the frame edge-to-edge with no leftover band. -->
+  <rect width="200" height="250" fill="#e8e3d4"/>
+
+  <!-- Single contiguous head + shoulders silhouette, sized so the head
+       sits comfortably in the upper third and the shoulders extend off
+       the bottom edge — fills the frame the way a real portrait would. -->
+  <g fill="#a39e8a">
+    <!-- Head -->
+    <circle cx="100" cy="92" r="44"/>
+    <!-- Shoulders / torso (extends past bottom) -->
+    <path d="M-10 260 C-10 192 30 160 100 160 C170 160 210 192 210 260 Z"/>
+  </g>
+</svg>

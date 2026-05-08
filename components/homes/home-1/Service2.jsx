@@ -1,6 +1,18 @@
-import AnimatedText from "@/components/common/AnimatedText";
 import Image from "next/image";
 import React from "react";
+
+// Service photography — local files in /public/assets/images, themed
+// per service. Next/Image's optimizer (no `unoptimized` prop) auto-serves
+// compressed AVIF/WebP at the rendered size, so a 2 MB source jpeg ends
+// up around 50–150 KB on the wire.
+const SERVICE_IMAGES = {
+  acquisition: "/assets/images/acquisition.jpg",
+  sale: "/assets/images/sale.jpg",
+  agency: "/assets/images/agency.jpg",
+  consultancy: "/assets/images/consult.jpg",
+  letting: "/assets/images/house.jpg",
+  management: "/assets/images/mgmt.jpg",
+};
 
 export default function Service2() {
   return (
@@ -25,7 +37,6 @@ export default function Service2() {
                 href="#services-item-2"
                 aria-controls="services-item-2"
                 role="tab"
-                q
                 aria-selected="false"
                 data-bs-toggle="tab"
               >
@@ -108,8 +119,9 @@ export default function Service2() {
                 width={945}
                 height={1016}
                 className="services-image"
-                src="/assets/images/acquisition.jpg"
-                alt="Image Description"
+                src={SERVICE_IMAGES.acquisition}
+                alt="Acquisition"
+                sizes="(max-width: 991px) 100vw, 50vw"
               />
               </div>
             </div>
@@ -137,8 +149,9 @@ export default function Service2() {
                 width={945}
                 height={1016}
                 className="services-image"
-                src="/assets/images/sale.jpg"
-                alt="Image Description"
+                src={SERVICE_IMAGES.sale}
+                alt="Sale"
+                sizes="(max-width: 991px) 100vw, 50vw"
               />
             </div>
             {/* End Tab Content */}
@@ -168,8 +181,9 @@ export default function Service2() {
                 width={945}
                 height={1016}
                 className="services-image"
-                src="/assets/images/services/agency.jpg"
-                alt="Image Description"
+                src={SERVICE_IMAGES.agency}
+                alt="Agency"
+                sizes="(max-width: 991px) 100vw, 50vw"
               />
             </div>
             {/* End Tab Content */}
@@ -199,8 +213,9 @@ export default function Service2() {
                 width={945}
                 height={1016}
                 className="services-image"
-                src="/assets/images/consult.jpg"
-                alt="Image Description"
+                src={SERVICE_IMAGES.consultancy}
+                alt="Consultancy"
+                sizes="(max-width: 991px) 100vw, 50vw"
               />
             </div>
             {/* End Tab Content */}
@@ -226,8 +241,9 @@ export default function Service2() {
                 width={945}
                 height={1016}
                 className="services-image"
-                src="/assets/images/sale.jpg"
-                alt="Image Description"
+                src={SERVICE_IMAGES.letting}
+                alt="Letting"
+                sizes="(max-width: 991px) 100vw, 50vw"
               />
             </div>
             {/* End Tab Content */}
@@ -239,7 +255,7 @@ export default function Service2() {
             >
               <div className="services-text">
                 <div className="services-text-container">
-                  <h4 className="text-white services-title">Managememnt</h4>
+                  <h4 className="text-white services-title">Management</h4>
                   <p className="text-white mb-0">
                     Here at Honourable Odedo & Co, we manage residential,
                     commercial and rental properties with care and
@@ -255,8 +271,9 @@ export default function Service2() {
                 width={945}
                 height={1016}
                 className="services-image"
-                src="/assets/images/mgmt.jpg"
-                alt="Image Description"
+                src={SERVICE_IMAGES.management}
+                alt="Management"
+                sizes="(max-width: 991px) 100vw, 50vw"
               />
               </div>
               

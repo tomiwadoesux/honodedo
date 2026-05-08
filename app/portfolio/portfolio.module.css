@@ -1,0 +1,126 @@
+/* ============================================================================
+   /portfolio hero — vertical centered stack, paired with /about and /books.
+     eyebrow → 3D model → title → lede.
+   ============================================================================ */
+
+.hero {
+  background: var(--c-bg-warm);
+  padding: 96px 0 64px;
+  border-bottom: 1px solid var(--c-line-soft);
+}
+
+.heroStack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-accent);
+  font-weight: 500;
+  position: relative;
+  padding: 0 38px;
+}
+
+.heroEyebrow::before,
+.heroEyebrow::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+}
+
+.heroEyebrow::before {
+  left: 0;
+}
+
+.heroEyebrow::after {
+  right: 0;
+}
+
+/* 3D panel — wider + taller than the about / books hero panels so the
+   portfolio model reads as the page's centerpiece. Aspect ratio is also
+   gentler (closer to 16:9) so a building / site model has more vertical
+   breathing room when the camera looks down. */
+.heroModel {
+  position: relative;
+  width: clamp(420px, 72vw, 800px);
+  aspect-ratio: 16 / 9;
+  background: transparent;
+  border: 0;
+  cursor: grab;
+  margin: 0;
+}
+
+.heroModel:active {
+  cursor: grabbing;
+}
+
+.heroTitle {
+  font-family: var(--font-sans);
+  font-size: clamp(2.2rem, 4.4vw, 4rem);
+  font-weight: 600;
+  letter-spacing: var(--tr-tight);
+  line-height: 1.05;
+  margin: 0;
+  color: var(--c-ink);
+  max-width: 32ch;
+  /* Blur-in reveal — same pattern as /about. Eyebrow + 3D model are
+     intentionally not animated. */
+  animation: heroBlurIn 0.9s cubic-bezier(0.32, 0.72, 0.24, 1) 0.2s both;
+}
+
+.heroLede {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--c-body);
+  max-width: 52ch;
+  margin: 0 auto;
+  animation: heroBlurIn 0.9s cubic-bezier(0.32, 0.72, 0.24, 1) 0.55s both;
+}
+
+/* ---------- Blur-in reveal (text only) ---------- */
+@keyframes heroBlurIn {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroTitle,
+  .heroLede {
+    animation: none;
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 880px) {
+  .hero {
+    padding: 80px 0 56px;
+  }
+  .heroStack {
+    gap: 20px;
+  }
+  .heroModel {
+    width: clamp(300px, 88vw, 560px);
+    aspect-ratio: 16 / 9;
+  }
+}

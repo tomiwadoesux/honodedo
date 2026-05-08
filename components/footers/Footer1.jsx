@@ -40,10 +40,8 @@ export default function Footer1({ dark = false }) {
                 alt="Your Company Logo"
               />
             </Link>
-            <p>
-            16, Mekong Crescent, Maitama, Abuja <br/> 20 Benue Cres, Garki, Abuja.
-
-
+            <p style={{ paddingTop: 18, marginTop: 0 }}>
+              16, Mekong Crescent, Maitama, Abuja <br /> 20 Benue Cres, Garki, Abuja.
             </p>
             <div className="clearlinks">
               <strong>Tel:</strong>

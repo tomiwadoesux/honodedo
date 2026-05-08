@@ -1,0 +1,81 @@
+/* Shared filled-with-arrow button. Mirrors the navbar Contact us button.
+   Color is themed via CSS custom properties: --btn-bg, --btn-fg, --btn-bg-hover. */
+
+.wrap,
+.wrap:hover,
+.wrap:focus,
+.wrap:active,
+.wrap:visited {
+  display: inline-flex;
+  text-decoration: none !important;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.wrap:focus-visible {
+  outline: 2px solid var(--c-accent, #3e4095);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+.btn {
+  --btn-bg: var(--c-accent, #3e4095);
+  --btn-fg: #ffffff;
+  --btn-bg-hover: #2a2c70;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 1px solid var(--btn-bg);
+  border-radius: 8px;
+  font-family: var(--font-sans, sans-serif);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.btn:hover,
+.wrap:hover .btn {
+  background: var(--btn-bg-hover);
+  border-color: var(--btn-bg-hover);
+  color: var(--btn-fg);
+}
+
+.arrow {
+  display: inline-block;
+  font-size: 0.95em;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wrap:hover .arrow {
+  transform: translateX(3px);
+}
+
+.sm {
+  padding: 7px 12px;
+  font-size: 0.78rem;
+  border-radius: 7px;
+  gap: 6px;
+}
+
+.md {
+  padding: 8px 14px;
+  font-size: 0.8rem;
+}
+
+.lg {
+  padding: 13px 22px;
+  font-size: 0.92rem;
+  border-radius: 10px;
+  gap: 10px;
+}

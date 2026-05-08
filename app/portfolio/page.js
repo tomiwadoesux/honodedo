@@ -1,68 +1,58 @@
 import Footer1 from "@/components/footers/Footer1";
 import Home1 from "./home1";
-import dynamic from "next/dynamic";
-import Header6 from "@/components/headers/Header6";
-import { fancyMultipage } from "@/data/menu";
-import ParallaxContainer from "@/components/common/ParallaxContainer";
-import Hero1 from "@/components/homes/home-1/heros/Hero1";
-import Header1Multipage from "@/components/headers/Header1Multipage";
-import { menuItems } from "@/data/menu";
+import ModelViewer from "@/components/common/ModelViewer";
+import styles from "./portfolio.module.css";
+
 export const metadata = {
   title: "Portfolio | Honourable Odedo",
-  description:
-    "Honourable Odedo | Portfolio Page",
+  description: "Honourable Odedo | Portfolio Page",
 };
-export default function Home1MainDemoMultiPage() {
+
+export default function PortfolioPage() {
   return (
-    <>
-      <div className="theme-main">
-        <div className="page" id="top">
-          <div className="light-mode">
-            <nav className="main-nav dark transparent light-after-scroll stick-fixed wow-menubar wch-unset">
-              <Header6 links={fancyMultipage} />
-            </nav>{" "}
-          </div>
-          <main id="main">
-            <section className="page-section pt-0 pb-0" id="home">
-              <ParallaxContainer
-                className="page-section bg-dark-1 bg-dark-alpha-80 light-content parallax-5"
-                style={{
-                  backgroundImage: "url(/assets/images/2-min.jpg)",
-                }}
-              >
-                <div className="container position-relative pt-50">
-                  {/* Section Content */}
-                  <div className="text-center">
-                    <div className="row">
-                      {/* Page Title */}
-                      <div className="col-md-8 offset-md-2">
-                        <h2
-                          className="section-caption-border mb-30 mb-xs-20  fadeInUp"
-                          data-wow-duration="1.2s"
-                        >
-                         Our Portfolio
-                        </h2>
-                        <h1 className="hs-title-1 mb-40">
-                          <span
-                            className="wow charsAnimIn"
-                            data-splitting="chars"
-                          >
-                            Take a glance of our works
-                          </span>
-                        </h1>
-                      </div>
-                      {/* End Page Title */}
-                    </div>
-                  </div>
-                  {/* End Section Content */}
+    <div className="theme-main">
+      <div className="page" id="top">
+        <main id="main">
+          {/* Hero — same vertical centered composition as /about and
+              /books, so the three editorial pages read as a family.
+              eyebrow → 3D model → title → lede. */}
+          <section className={styles.hero}>
+            <div className="container">
+              <div className={styles.heroStack}>
+                <span className={styles.heroEyebrow}>Our Portfolio</span>
+
+                <div className={styles.heroModel}>
+                  {/* `cameraHeight={1.2}` raises the camera above the
+                      model's centroid → the viewer looks down at it
+                      from a slight elevation (architectural plan-view
+                      feel). `boundsMargin={0.85}` lets the model fill
+                      ~15% past the panel edges, reading as bigger
+                      and more present than the /about / /books models. */}
+                  <ModelViewer
+                    src="/assets/models/portfolio-feature.glb"
+                    autoRotate
+                    cameraHeight={1.2}
+                    boundsMargin={0.85}
+                  />
                 </div>
-              </ParallaxContainer>
-            </section>
-            <Home1 />
-          </main>
-          <Footer1 />
-        </div>{" "}
+
+                <h1 className={styles.heroTitle}>
+                  A look at the work.
+                </h1>
+
+                <p className={styles.heroLede}>
+                  A small selection of estates, buildings, and land
+                  acquisitions delivered with our clients across the FCT.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Existing portfolio grid */}
+          <Home1 />
+        </main>
+        <Footer1 />
       </div>
-    </>
+    </div>
   );
 }

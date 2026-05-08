@@ -1,42 +1,17 @@
 "use client";
-import { useEffect } from "react";
 import AnimatedText from "@/components/common/AnimatedText";
 import About from "@/components/homes/home-1/About";
 import Benefits from "@/components/homes/home-1/Benefits";
-import Blog from "@/components/homes/home-1/Blog";
-import Brands from "@/components/homes/home-1/Brands";
 import Newsletter from "./Newsletter";
 import Contact from "@/components/homes/home-1/Contact";
-import Brands2 from "@/components/homes/home-1/Brands2";
-import Testimonials2 from "@/components/homes/home-1/Teatimonials2";
-import Testimonials from "@/components/homes/home-1/Testimonials";
-import Facts from "@/components/homes/home-1/Facts";
-import { teamMembers3 } from "@/data/team";
-import PortfolioMassonry2 from "@/components/portfolio/PortfolioMassonry2";
-import Team from "./Team";
 import Service2 from "@/components/homes/home-1/Service2";
-import Faq from "@/components/homes/home-1/Faq";
-import Features from "@/components/homes/home-1/Features";
-import Portfolio from "@/components/homes/home-2/Portfolio";
-import Promo from "@/components/homes/home-1/Promo";
-import Service from "@/components/homes/home-1/Service";
+import FilledArrowButton from "@/components/common/FilledArrowButton";
+import UnderlineArrowButton from "@/components/common/UnderlineArrowButton";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import Image from "next/image";
-import ParallaxContainer from "@/components/common/ParallaxContainer";
-import Accordion from "@/components/Accordion";
 import Accordion2 from "@/components/accordions/Accordion2";
-export default function Home1({ onePage = false, dark = false }) {
-  useEffect(() => {
-    const addPaddingLeft = () => {
-      document.getElementById("paddingLeft").style.paddingLeft = `${
-        (window.innerWidth -
-          document.getElementById("paddingLeftContainer").offsetWidth) /
-        2
-      }px`;
-    };
-  }, []);
 
+export default function Home1({ onePage = false, dark = false }) {
   return (
     <>
       <section
@@ -63,55 +38,9 @@ export default function Home1({ onePage = false, dark = false }) {
               ></div>
               {/* End Decorative Dots */}
 
-              {onePage ? (
-                <a
-                  href="#team"
-                  className="link-hover-anim underline align-middle"
-                  data-link-animate="y"
-                >
-                  <span className="link-strong link-strong-unhovered">
-                    Learn more about us{" "}
-                    <i
-                      className="mi-arrow-right size-18"
-                      aria-hidden="true"
-                    ></i>
-                  </span>
-                  <span
-                    className="link-strong link-strong-hovered"
-                    aria-hidden="true"
-                  >
-                    Learn more about us{" "}
-                    <i
-                      className="mi-arrow-right size-18"
-                      aria-hidden="true"
-                    ></i>
-                  </span>
-                </a>
-              ) : (
-                <Link
-                  href={`/about${dark ? "-dark" : ""}`}
-                  className="link-hover-anim underline align-middle"
-                  data-link-animate="y"
-                >
-                  <span className="link-strong link-strong-unhovered">
-                    Learn more about us{" "}
-                    <i
-                      className="mi-arrow-right size-18"
-                      aria-hidden="true"
-                    ></i>
-                  </span>
-                  <span
-                    className="link-strong link-strong-hovered"
-                    aria-hidden="true"
-                  >
-                    Learn more about us{" "}
-                    <i
-                      className="mi-arrow-right size-18"
-                      aria-hidden="true"
-                    ></i>
-                  </span>
-                </Link>
-              )}
+              <UnderlineArrowButton href={onePage ? "#team" : `/about${dark ? "-dark" : ""}`}>
+                Learn more about us
+              </UnderlineArrowButton>
             </div>
           </div>
           <About />
@@ -165,27 +94,6 @@ export default function Home1({ onePage = false, dark = false }) {
           </div>
         </div>
       </div>
-      {/* <section
-        className={`page-section  scrollSpysection  ${
-          dark ? "bg-dark-1 light-content" : ""
-        }`}
-        id="services"
-      >
-        {" "}
-        <Service />
-      </section> */}
-
-      <ParallaxContainer></ParallaxContainer>
-      {/* <section
-        className={`page-section  scrollSpysection  ${
-          dark ? "bg-dark-1 light-content" : ""
-        }`}
-        id="portfolio"
-      >
-        <Portfolio />
-      </section> */}
-      <hr className={`mt-0 mb-0 ${dark ? "white" : ""}`} />
-
       <hr className={`mt-0 mb-0 ${dark ? "white" : ""}`} />
 
       <div className="pt-4 container position-relative">
@@ -213,40 +121,28 @@ export default function Home1({ onePage = false, dark = false }) {
           }`}
         >
           <Service2 />
-          <div className="row pt-4 mb-60 mb-xs-30">
-            <div className="col-md-6">
-              <h3 className="section-title mb-0">
-                <AnimatedText text="What else do we offer our clients?" />
-              </h3>
-            </div>
-            <div className="col-md-5 offset-md-1 relative text-start text-md-end pt-40 pt-sm-20 local-scroll">
-              {/* Decorative Dots */}
-              <div
-                className="decoration-2 d-none d-md-block"
-                data-rellax-y=""
-                data-rellax-speed="0.7"
-                data-rellax-percentage="-0.2"
-              ></div>
-              {/* End Decorative Dots */}
-            </div>
+
+          {/* What else do we offer */}
+          <div style={{ marginTop: 96 }}>
+            <header className="u-section-head">
+              <div>
+                <span className="t-eyebrow">More from us</span>
+                <h2>
+                  <AnimatedText text="What else do we offer our clients?" />
+                </h2>
+              </div>
+            </header>
             <Accordion2 />
           </div>
         </div>{" "}
       </div>
 
       <section
-        className={`page-section  ${dark ? "bg-dark-1 light-content" : ""}`}
+        className={`page-section benefitsSectionExtraSpacing ${dark ? "bg-dark-1 light-content" : ""}`}
       >
         <Benefits />{" "}
       </section>
-   
-      {/* <section
-        className={`page-section pt-0 pb-0  ${dark ? "light-content" : ""}`}
-      >
-        {" "}
-        {dark ? <Testimonials2 /> : <Testimonials />}
-      </section> */}
-  
+
       <hr className={`mt-0 mb-0 ${dark ? "white" : ""}`} />
       <section
         className="page-section bg-gray-light-1 bg-light-alpha-70 bg-scroll pb-0 mb-100 mb-md-70 mb-sm-50 z-index-1"
@@ -267,12 +163,16 @@ export default function Home1({ onePage = false, dark = false }) {
                 </div>
 
                 <div className="local-scroll">
-                  <Link
+                  {/* Legacy red for this CTA — restores the original
+                      brand colour the section had before the FilledArrow
+                      migration. */}
+                  <FilledArrowButton
                     href={`/portfolio${dark ? "-dark" : ""}`}
-                    className="btn btn-mod btn-large btn-round btn-hover-anim"
+                    size="lg"
+                    color="var(--c-red)"
                   >
-                    <span>See Project</span>
-                  </Link>
+                    See Project
+                  </FilledArrowButton>
                 </div>
               </h3>
 

@@ -1,0 +1,342 @@
+/* ============================================================================
+   HeaderModern — floating bar with margin from edges.
+   - 3-column grid (1fr | auto | 1fr) so the centre nav lines up with the
+     centre of the viewport, not the centre of the bar.
+   - Always has a bg. White at top of page; translucent + frosted past hero.
+   - The active nav link has a moving underline animated with Motion.
+   ============================================================================ */
+
+.headerWrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+  /* Solid: matches the site's warm light bg */
+  background: var(--c-bg-warm);
+  border-bottom: 1px solid rgba(20, 20, 30, 0.06);
+  transform: translate3d(0, 0, 0);
+  transform-origin: 50% 0;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 0.8, 0.24, 1),
+    background 0.35s var(--ease-soft),
+    border-color 0.35s var(--ease-soft);
+}
+
+/* Past the hero — slightly heavier border so it reads against busy bgs */
+.headerWrap[data-scrolled] {
+  border-bottom-color: rgba(20, 20, 30, 0.08);
+}
+
+/* Scrolling DOWN past 100vh — slide up off-screen */
+.headerWrap[data-state="hidden"] {
+  transform: translate3d(0, -120%, 0);
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 62px;
+  /* Match the global .container so the navbar's logo + CTA align with the
+     left/right edges of any page's content (about, home, etc.). The site's
+     .container is max-width 1350px / 1260px ≤1366vw / 30px side padding,
+     stepping down to 20px ≤480vw — mirrored below. */
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 0 30px;
+  gap: 24px;
+}
+
+@media (max-width: 1366px) {
+  .bar {
+    max-width: 1260px;
+  }
+}
+
+/* ============================================================================
+   Logo (left column)
+   ============================================================================ */
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--c-ink);
+  justify-self: start;
+}
+
+.logoLink:hover,
+.logoLink:focus,
+.logoLink:active,
+.logoLink:visited,
+.logoLink * {
+  text-decoration: none !important;
+  color: var(--c-ink);
+}
+
+.logoMark {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+
+.logoText {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* ============================================================================
+   Nav (centre column)
+   ============================================================================ */
+.navWrap {
+  justify-self: center;
+}
+
+.nav {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  font-family: var(--font-sans);
+  color: var(--c-ink);
+  text-decoration: none;
+  border-radius: 8px;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.link:hover {
+  color: var(--c-accent);
+}
+
+.link[data-active] {
+  color: var(--c-accent);
+}
+
+/* Letter cascade — variable font weight transitions per letter. */
+.label {
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.letter {
+  display: inline-block;
+  font-variation-settings: "wght" 400;
+  /* Slower per-letter weight transition so the cascade reads as a clear
+     ripple rather than flickering past in milliseconds. */
+  transition: font-variation-settings var(--letter-fade, 320ms)
+    cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: var(--letter-delay, 0ms);
+  /* Reserve space for the bold weight to avoid horizontal jitter */
+  letter-spacing: 0;
+}
+
+.letter[data-bold] {
+  font-variation-settings: "wght" 700;
+}
+
+/* The travelling underline / dot. Position is set by Motion (transform/width/etc).
+   Color is the brand accent. */
+.underline {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--c-accent);
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, width, height, top, border-radius;
+}
+
+/* ============================================================================
+   CTA (right column)
+   ============================================================================ */
+.cta {
+  display: inline-flex;
+  justify-self: end;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--c-accent);
+  color: #fff;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: 1px solid var(--c-accent);
+  transition: background 0.25s ease, border-color 0.25s ease;
+  white-space: nowrap;
+}
+
+.ctaBtn:hover {
+  background: #2a2c70;
+  border-color: #2a2c70;
+  color: #fff;
+}
+
+.ctaBtn:hover .ctaArrow {
+  transform: translateX(3px);
+}
+
+.ctaArrow {
+  display: inline-block;
+  font-size: 0.95em;
+  transition: transform 0.25s var(--ease-soft);
+}
+
+/* ============================================================================
+   Mobile toggle / drawer
+   ============================================================================ */
+.toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.toggle span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--c-ink);
+  border-radius: 2px;
+  transition: transform 0.3s var(--ease-soft);
+}
+
+.toggle span[data-open]:first-child {
+  transform: translateY(3.25px) rotate(45deg);
+}
+.toggle span[data-open]:last-child {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+.drawer {
+  display: none;
+  pointer-events: none;
+  position: fixed;
+  top: 84px;
+  left: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: saturate(180%) blur(22px);
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
+  border: 1px solid rgba(20, 20, 30, 0.06);
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: 0 18px 40px -10px rgba(20, 20, 30, 0.2);
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.3s ease, transform 0.3s var(--ease-soft);
+}
+
+.drawer[data-open] {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.drawer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer li a {
+  display: block;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--c-ink);
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.drawer li a:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.drawerCta {
+  background: var(--c-accent);
+  color: #fff !important;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.drawerCta:hover {
+  background: #2a2c70 !important;
+}
+
+/* ============================================================================
+   Responsive
+   ============================================================================ */
+@media (max-width: 880px) {
+  .navWrap,
+  .cta {
+    display: none;
+  }
+  .toggle {
+    display: inline-flex;
+  }
+  .drawer {
+    display: block;
+  }
+  .bar {
+    grid-template-columns: 1fr auto;
+    height: 52px;
+    /* Stays in sync with .container side padding (30px, then 20px ≤480px) */
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bar {
+    padding: 0 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headerWrap,
+  .ctaBtn,
+  .link,
+  .letter {
+    transition: none !important;
+  }
+}

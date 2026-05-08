@@ -102,16 +102,14 @@ html {
 /* Initial Loading Screen - Critical CSS for immediate display */
 .initial-loading-screen {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  inset: 0;
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 99999;
-  transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+  transition: opacity 0.55s cubic-bezier(0.65, 0, 0.35, 1),
+              visibility 0.55s cubic-bezier(0.65, 0, 0.35, 1);
   opacity: 1;
   visibility: visible;
 }
@@ -120,62 +118,93 @@ html {
   opacity: 0;
   visibility: hidden;
 }
+/* As the loader exits, gently lift the logo so it feels like it's settling onto the page */
+.initial-loading-screen--fade-out .loader-logo-wrap {
+  transform: translateY(-4px) scale(1.04);
+  transition: transform 0.55s cubic-bezier(0.5, 0, 0.5, 1);
+}
 
 .initial-loading-content {
   text-align: center;
-  color: white;
 }
 
-.initial-loading-spinner {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-bottom: 24px;
+.loader-logo-wrap {
+  position: relative;
+  width: 108px;
+  height: 94px;
+  display: inline-block;
+  /* Soft entry: fade + tiny rise the moment the loader appears */
+  animation: loader-entry 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transform-origin: 50% 50%;
 }
 
-.initial-spinner-dot {
-  width: 12px;
-  height: 12px;
-  background: #4f46e5;
-  border-radius: 50%;
-  animation: initial-loading-bounce 1.4s ease-in-out infinite both;
+@keyframes loader-entry {
+  0%   { opacity: 0; transform: translateY(8px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0)   scale(1);    }
 }
 
-.initial-spinner-dot:nth-child(1) {
-  animation-delay: -0.32s;
+.loader-logo {
+  position: absolute;
+  inset: 0;
+  display: block;
 }
 
-.initial-spinner-dot:nth-child(2) {
-  animation-delay: -0.16s;
+.loader-logo svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.initial-loading-text {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  color: #e5e7eb;
-  letter-spacing: 0.5px;
-  animation: initial-text-pulse 2s ease-in-out infinite;
+/* The inlined SVG paths use fill="currentColor" so the parent's color drives them. */
+
+/* Base layer: muted desaturated tint of the brand color */
+.loader-logo--grey {
+  color: #d8d9e5;
 }
 
-@keyframes initial-loading-bounce {
-  0%, 80%, 100% {
-    transform: scale(0.8);
-    opacity: 0.6;
-  }
-  40% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
+/* Top layer: brand accent. Wipes upward, revealing the colored logo over the grey one. */
+.loader-logo--accent {
+  color: #3E4095;
+  -webkit-clip-path: inset(100% 0 0 0);
+          clip-path: inset(100% 0 0 0);
+  animation: loader-wipe 1.1s cubic-bezier(0.65, 0, 0.35, 1) 0.18s forwards,
+             loader-breathe 1.6s ease-in-out 1.35s 1 forwards;
 }
 
-@keyframes initial-text-pulse {
-  0%, 100% {
-    opacity: 0.7;
-  }
-  50% {
-    opacity: 1;
-  }
+@keyframes loader-wipe {
+  0%   { -webkit-clip-path: inset(100% 0 0 0); clip-path: inset(100% 0 0 0); }
+  100% { -webkit-clip-path: inset(0 0 0 0);    clip-path: inset(0 0 0 0);    }
+}
+
+@keyframes loader-breathe {
+  0%   { filter: brightness(1)    drop-shadow(0 0 0 rgba(62, 64, 149, 0)); }
+  35%  { filter: brightness(1.06) drop-shadow(0 0 12px rgba(62, 64, 149, 0.18)); }
+  100% { filter: brightness(1)    drop-shadow(0 0 0 rgba(62, 64, 149, 0)); }
+}
+
+/* Hairline scan line that travels with the wipe — adds a quiet sense of motion */
+.loader-scan {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(62, 64, 149, 0.0) 10%,
+    rgba(62, 64, 149, 0.45) 50%,
+    rgba(62, 64, 149, 0.0) 90%,
+    transparent 100%);
+  bottom: 0;
+  opacity: 0;
+  animation: loader-scan-rise 1.1s cubic-bezier(0.65, 0, 0.35, 1) 0.18s forwards;
+  pointer-events: none;
+}
+
+@keyframes loader-scan-rise {
+  0%   { transform: translateY(0);    opacity: 0; }
+  10%  { opacity: 0.9; }
+  90%  { opacity: 0.9; }
+  100% { transform: translateY(-100%); opacity: 0; }
 }
 
 /* Main Content Control */
@@ -192,12 +221,8 @@ html {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .initial-loading-text {
-    font-size: 16px;
-  }
-
-  .initial-spinner-dot {
-    width: 10px;
-    height: 10px;
+  .loader-logo-wrap {
+    width: 92px;
+    height: 80px;
   }
 }

@@ -1,8 +1,9 @@
 "use client";
-import AnimatedText from "@/components/common/AnimatedText";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import TypeWriter from "@/components/common/TypeWriter";
+import FilledArrowButton from "@/components/common/FilledArrowButton";
+import UnderlineArrowButton from "@/components/common/UnderlineArrowButton";
 import Image from "next/image";
 
 const divSections = [
@@ -109,22 +110,23 @@ export default function Hero5({ dark }) {
                           </div>
                           <div
                             className="local-scroll fadeInUp wch-unset"
+                            style={{
+                              display: "flex",
+                              flexWrap: "wrap",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              gap: "28px",
+                            }}
                             data-wow-delay="0.6s"
                           >
-                            <a
-                              href="#services"
-                              className="btn btn-mod btn-color btn-large btn-round btn-hover-anim mx-1 mb-xs-10"
-                            >
-                              <span>Our Services</span>
-                            </a>
-                            <a
-                              href="#contact"
-                              onClick={() => setOpen(true)}
-                              className="btn btn-mod btn-w-c btn-large btn-round mx-1 mb-xs-10 lightbox mfp-iframe"
-                              data-btn-animate="y"
-                            >
-                              <i className=" size-13 me-1" /> Contact Us
-                            </a>
+                            <FilledArrowButton href="#services" size="lg">
+                              Our Services
+                            </FilledArrowButton>
+                            <span style={{ color: "#fff" }}>
+                              <UnderlineArrowButton href="#contact">
+                                Contact Us
+                              </UnderlineArrowButton>
+                            </span>
                           </div>
                         </div>
               {/* End Home Section Text */}
@@ -149,5 +151,5 @@ export default function Hero5({ dark }) {
         </div>
       </div>
     </>
-  );``
+  );
 }
