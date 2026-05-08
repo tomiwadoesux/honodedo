@@ -116,6 +116,16 @@ export default function Team() {
                   loading="lazy"
                   className={styles.cardImage}
                 />
+                {/* Breathing "tap to see profile" hint. The animation
+                    runs on a 4.5s loop and is staggered per card via
+                    --hint-delay so the cards don't all pulse in unison. */}
+                <span
+                  className={styles.cardTapHint}
+                  style={{ "--hint-delay": `${i * 0.7}s` }}
+                  aria-hidden="true"
+                >
+                  Tap to see profile
+                </span>
               </div>
               <div className={styles.cardMeta}>
                 <h4 className={styles.cardName}>{m.name}</h4>

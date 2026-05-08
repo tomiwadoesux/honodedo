@@ -177,6 +177,69 @@
   transform: scale(1.04);
 }
 
+/* "Tap to see profile" hint pill — breathes in and out every 4.5s on a
+   loop. Sits centered along the bottom of each card image. The
+   --hint-delay custom property is set inline per-card so the pulses
+   stagger across the grid instead of all firing at the same instant. */
+.cardTapHint {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  /* Keyframes maintain `translateX(-50%)` for centering and animate
+     opacity + a small Y offset to give the breath its rise/settle feel. */
+  transform: translate3d(-50%, 8px, 0);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 7px 12px;
+  border-radius: 999px;
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0;
+  z-index: 2;
+  animation: cardTapBreath 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-delay: var(--hint-delay, 0s);
+}
+
+@keyframes cardTapBreath {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate3d(-50%, 8px, 0);
+  }
+  10% {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0);
+  }
+  35% {
+    opacity: 1;
+    transform: translate3d(-50%, -2px, 0);
+  }
+  48% {
+    opacity: 0;
+    transform: translate3d(-50%, -6px, 0);
+  }
+}
+
+/* Drop the hint while the user is actively hovering — they're already
+   engaging with the card so the prompt has done its job. */
+.gridCard:hover .cardTapHint {
+  opacity: 0;
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardTapHint {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 .cardMeta {
   display: flex;
   flex-direction: column;
@@ -480,9 +543,13 @@
     gap: 32px;
   }
   .featuredImageWrap {
-    /* Center the CEO portrait on mobile — without `margin: 0 auto` the
-       80% wrapper stays glued to the left edge of the column. */
-    max-width: 80%;
+    /* Use `min()` so the wrap always has a definite width on mobile. The
+       previous `max-width: 80%` left the width as `auto`, which under
+       certain mobile widths + grid track minimums collapsed the wrap to
+       0 (nothing visible) and the CEO portrait disappeared. Now: 100%
+       of the column up to a 360px cap, centered horizontally. */
+    width: min(100%, 360px);
+    max-width: none;
     margin-left: auto;
     margin-right: auto;
   }

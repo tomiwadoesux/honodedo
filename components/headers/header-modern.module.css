@@ -77,7 +77,9 @@
 }
 
 .logoMark {
-  height: 22px;
+  /* Smaller default — the mark sits as a quiet companion to the
+     wordmark rather than competing with it. */
+  height: 16px;
   width: auto;
   display: block;
 }
@@ -324,11 +326,37 @@
     /* Stays in sync with .container side padding (30px, then 20px ≤480px) */
     padding: 0 30px;
   }
+  /* Smaller logo on tablet/mobile — mark + tighter wordmark gap. */
+  .logoLink {
+    gap: 7px;
+  }
+  .logoMark {
+    height: 13px;
+  }
+  .logoText {
+    font-size: 0.85rem;
+    letter-spacing: -0.015em;
+  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 560px) {
+  .logoMark {
+    height: 12px;
+  }
+  .logoText {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 420px) {
   .bar {
     padding: 0 20px;
+  }
+  /* Tightest phones — drop the wordmark entirely so just the mark fits
+     comfortably alongside the hamburger. The mark itself is 14px so the
+     row reads as a clean miniature header. */
+  .logoText {
+    display: none;
   }
 }
 
