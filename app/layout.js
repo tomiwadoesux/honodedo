@@ -4,6 +4,7 @@ import "jarallax/dist/jarallax.min.css";
 import "swiper/css/effect-fade";
 import "photoswipe/dist/photoswipe.css";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import ClientWrapper from "./ClientWrapper";
 import LenisProvider from "./LenisProvider";
 import Loader from "./Loader";
@@ -51,6 +52,11 @@ export default function RootLayout({ children }) {
             </ClientWrapper>
           </div>
         </LenisProvider>
+
+        {/* Vercel Analytics — sits in the root layout so it tracks every
+            route in the app (no need to add it per-page). Beacons are
+            sent only in production; localhost / dev are no-ops. */}
+        <Analytics />
 
         {/* Inline JavaScript for immediate loading control */}
         <script dangerouslySetInnerHTML={{
